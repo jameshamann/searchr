@@ -1,28 +1,34 @@
+'use strict';
+
+process.env.NODE_ENV = 'test';
+
+
 var chai = require('chai')
+var zombiedChai = require('zombied-chai')
 var assert = chai.assert;
-var http = require('http');
+var http = require('http')
 var app = require('../app.js');
 const Browser = require('zombie')
 
-
 describe('Movie/TV Show Search', function(){
-  this.server = http.createServer(app).listen(3000);
+
   const browser = new Browser({site: 'http://localhost:3000' });
+
+  before(function(done) {
+    this.server = http.createServer(app).listen(3000);
+    browser.visit('/', done);
+  });
 
 
   it('should display a welcome page', function(){
-    return browser.visit('/')
-    browser.assert.success();
+    browser.assert.status(200);
     browser.assert.text('title', 'Searchr')
-
 
   });
 
-  it('should display a search bar for users to input a film/tvshow or game', function(){
-    return browser.visit('/')
-
-
-
+  it('should display movie information from the API', function(){
+    browser.assert.status(200);
+    browser.assert.text('p', 'Primer')
   });
 
 });
