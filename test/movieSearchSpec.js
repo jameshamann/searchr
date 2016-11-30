@@ -28,7 +28,8 @@ describe('Movie/TV Show Search', function(){
 
   it('should display movie information from the API', function(){
     browser.assert.status(200);
-    browser.assert.text('p', 'Primer')
+    browser.assert.text('p', 'Primer 2004')
+
   });
 
 });
