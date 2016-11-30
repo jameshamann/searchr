@@ -18,4 +18,11 @@ describe('Movie/TV Show Search', function(){
 
   });
 
+  it('should display a search bar for users to input a film/tvshow or game', function(){
+    return browser.visit('/')
+
+
+
+  });
+
 });
